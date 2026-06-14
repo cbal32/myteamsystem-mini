@@ -85,8 +85,40 @@ $members = $filteredMembers;
 ?>
 
 <link rel="stylesheet" href="assets/css/style.css">
+<div class="app-layout">
 
-<h1>Λίστα Υποψηφίων</h1>
+ <aside class="sidebar">
+
+    <div class="profile-card">
+
+  <img src="assets/images/avatar.jpg" class="profile-avatar-image">
+
+        <div class="profile-name">
+            Χρήστος Βαλσαμίδης
+        </div>
+
+        <div class="profile-role">
+            ESSENS Leader
+        </div>
+
+    </div>
+
+    <h2>MTS CRM</h2>
+ <a href="members.php">📊 Dashboard</a>
+<a href="members.php?filter=all">👥 Prospects</a>
+<a href="add-member.php">➕ New Prospect</a>
+<a href="members.php?filter=today">📅 Follow Ups</a>
+<a href="members.php?filter=high">⭐ Priority</a>
+<a href="#ai-tools">🤖 AI Tools</a>
+<a href="#settings">⚙ Settings</a>
+    </aside>
+
+    <main class="main-content">
+
+<div class="page-header">
+    <h1>AI Prospect Manager</h1>
+    <p>Διαχείριση υποψηφίων, follow-ups και AI επικοινωνίας.</p>
+</div>
 
 <h2>Dashboard</h2>
 
@@ -242,3 +274,6 @@ $members = $filteredMembers;
         <?php endforeach; ?>
     </table>
 <?php endif; ?>
+
+    </main>
+</div>
