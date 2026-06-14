@@ -12,6 +12,7 @@ if (!is_array($members)) {
 $totalProspects = count($members);
 $today = date("Y-m-d");
 $filter = $_GET["filter"] ?? "all";
+$search = trim($_GET["search"] ?? "");
 
 $overdueCount = 0;
 $todayCount = 0;
@@ -46,6 +47,24 @@ foreach ($members as $member) {
 $filteredMembers = [];
 
 foreach ($members as $member) {
+    if ($search !== "") {
+        $searchText = mb_strtolower(
+            ($member["first_name"] ?? "") . " " .
+            ($member["last_name"] ?? "") . " " .
+            ($member["phone"] ?? "") . " " .
+            ($member["email"] ?? "") . " " .
+            ($member["facebook_url"] ?? "") . " " .
+            ($member["instagram_url"] ?? "") . " " .
+            ($member["profession"] ?? "") . " " .
+            ($member["description"] ?? ""),
+            "UTF-8"
+        );
+
+        if (mb_strpos($searchText, mb_strtolower($search, "UTF-8")) === false) {
+            continue;
+        }
+    }
+
     $followUpDate = $member["next_follow_up_date"] ?? "";
     $priority = $member["priority"] ?? "Medium";
 
@@ -65,48 +84,50 @@ foreach ($members as $member) {
 $members = $filteredMembers;
 ?>
 
+<link rel="stylesheet" href="assets/css/style.css">
+
 <h1>Λίστα Υποψηφίων</h1>
 
 <h2>Dashboard</h2>
 
-<div style="display:flex; gap:15px; flex-wrap:wrap; margin-bottom:25px;">
+<div class="dashboard">
 
-    <a href="members.php?filter=all" style="text-decoration:none;color:inherit;">
-        <div style="border:1px solid #ccc; padding:15px; min-width:160px;">
+    <a href="members.php?filter=all">
+        <div class="card">
             <strong>Σύνολο Prospects</strong><br>
             <?php echo $totalProspects; ?>
         </div>
     </a>
 
-    <a href="members.php?filter=overdue" style="text-decoration:none;color:inherit;">
-        <div style="border:1px solid #ccc; padding:15px; min-width:160px;">
+    <a href="members.php?filter=overdue">
+        <div class="card">
             <strong>🔴 Overdue</strong><br>
             <?php echo $overdueCount; ?>
         </div>
     </a>
 
-    <a href="members.php?filter=today" style="text-decoration:none;color:inherit;">
-        <div style="border:1px solid #ccc; padding:15px; min-width:160px;">
+    <a href="members.php?filter=today">
+        <div class="card">
             <strong>🟠 Today</strong><br>
             <?php echo $todayCount; ?>
         </div>
     </a>
 
-    <a href="members.php?filter=scheduled" style="text-decoration:none;color:inherit;">
-        <div style="border:1px solid #ccc; padding:15px; min-width:160px;">
+    <a href="members.php?filter=scheduled">
+        <div class="card">
             <strong>🟢 Scheduled</strong><br>
             <?php echo $scheduledCount; ?>
         </div>
     </a>
 
-    <a href="members.php?filter=high" style="text-decoration:none;color:inherit;">
-        <div style="border:1px solid #ccc; padding:15px; min-width:160px;">
+    <a href="members.php?filter=high">
+        <div class="card">
             <strong>⭐ High Priority</strong><br>
             <?php echo $highPriorityCount; ?>
         </div>
     </a>
 
-    <div style="border:1px solid #ccc; padding:15px; min-width:160px;">
+    <div class="card">
         <strong>✅ Εγγεγραμμένοι</strong><br>
         <?php echo $registeredCount; ?>
     </div>
@@ -118,12 +139,34 @@ $members = $filteredMembers;
     <?php echo htmlspecialchars($filter); ?>
 </p>
 
-<p><a href="add-member.php">+ Προσθήκη νέου υποψηφίου</a></p>
+<?php if ($search !== ""): ?>
+    <p>
+        <strong>Αναζήτηση:</strong>
+        <?php echo htmlspecialchars($search); ?>
+    </p>
+<?php endif; ?>
+
+<form method="get" action="members.php" class="search-form">
+    <input type="hidden" name="filter" value="<?php echo htmlspecialchars($filter); ?>">
+
+    <input
+        type="text"
+        name="search"
+        value="<?php echo htmlspecialchars($search); ?>"
+        placeholder="Αναζήτηση με όνομα, τηλέφωνο, email, επάγγελμα..."
+    >
+
+    <button type="submit">Search</button>
+
+    <a href="members.php?filter=<?php echo urlencode($filter); ?>">Clear</a>
+</form>
+
+<p><a href="add-member.php" class="button-link">+ Προσθήκη νέου υποψηφίου</a></p>
 
 <?php if (empty($members)): ?>
     <p>Δεν υπάρχουν υποψήφιοι για αυτό το φίλτρο.</p>
 <?php else: ?>
-    <table border="1" cellpadding="8" cellspacing="0">
+    <table>
         <tr>
             <th>Όνομα</th>
             <th>Τηλέφωνο</th>
@@ -182,21 +225,20 @@ $members = $filteredMembers;
                     ?>
                 </td>
 
-  <td><?php echo htmlspecialchars($member["created_at"] ?? ""); ?></td>
+                <td><?php echo htmlspecialchars($member["created_at"] ?? ""); ?></td>
 
-<td>
-    <a href="edit-member.php?id=<?php echo urlencode($member["id"] ?? ""); ?>">
-        ✏ Edit
-    </a>
+                <td>
+                    <a href="edit-member.php?id=<?php echo urlencode($member["id"] ?? ""); ?>">
+                        ✏ Edit
+                    </a>
 
-    <br>
+                    <br>
 
-    <a href="delete-member.php?id=<?php echo urlencode($member["id"] ?? ""); ?>" style="color:red;">
-        🗑 Delete
-    </a>
-</td>
-
-</tr>
+                    <a href="delete-member.php?id=<?php echo urlencode($member["id"] ?? ""); ?>" class="danger-link">
+                        🗑 Delete
+                    </a>
+                </td>
+            </tr>
         <?php endforeach; ?>
     </table>
 <?php endif; ?>

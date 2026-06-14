@@ -1,3 +1,7 @@
+
+<link rel="stylesheet" href="assets/css/style.css">
+
+
 <?php
 $dataFile = __DIR__ . "/data/members.json";
 

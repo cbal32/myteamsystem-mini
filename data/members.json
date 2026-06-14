@@ -49,5 +49,30 @@
         "next_action": "Πρόσκληση στο σεμινάριο",
         "priority": "High",
         "created_at": "2026-06-14 14:31:20"
+    },
+    {
+        "id": 1781450117,
+        "first_name": "kostas",
+        "last_name": "bill",
+        "phone": "6994212122",
+        "email": "cv@valsamidis.pro",
+        "country": "Ελλάδα",
+        "facebook_url": "",
+        "instagram_url": "",
+        "source": "Facebook",
+        "status": "Νέος",
+        "description": "",
+        "profession": "",
+        "family_status": "",
+        "age": "",
+        "interests": "",
+        "goals": "",
+        "available_time": "",
+        "interest_categories": [],
+        "social_observations": "",
+        "next_follow_up_date": "2026-06-24",
+        "next_action": "",
+        "priority": "Medium",
+        "created_at": "2026-06-14 15:15:17"
     }
 ]

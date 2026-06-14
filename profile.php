@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="assets/css/style.css">
+
 <?php
 require_once __DIR__ . "/config.php";
 $dataFile = __DIR__ . "/data/members.json";
