@@ -29,7 +29,11 @@ if (!is_array($members)) {
 
         <?php foreach ($members as $member): ?>
             <tr>
-                <td><?php echo htmlspecialchars(($member["first_name"] ?? "") . " " . ($member["last_name"] ?? "")); ?></td>
+<td>
+    <a href="profile.php?id=<?php echo urlencode($member["id"] ?? ""); ?>">
+        <?php echo htmlspecialchars(($member["first_name"] ?? "") . " " . ($member["last_name"] ?? "")); ?>
+    </a>
+</td>
                 <td><?php echo htmlspecialchars($member["phone"] ?? ""); ?></td>
                 <td><?php echo htmlspecialchars($member["email"] ?? ""); ?></td>
                 <td><?php echo htmlspecialchars($member["source"] ?? ""); ?></td>
