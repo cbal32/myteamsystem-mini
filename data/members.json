@@ -33,5 +33,31 @@
         "status": "Νέος",
         "description": "",
         "created_at": "2026-06-14 13:18:42"
+    },
+    {
+        "id": 1781444724,
+        "first_name": "CHRISTOS",
+        "last_name": "VALSAMIDIS",
+        "phone": "6994212121",
+        "email": "cv.valsamidis@gmail.com",
+        "country": "Ελλάδα",
+        "facebook_url": "https:\/\/www.facebook.com\/cbal32",
+        "instagram_url": "https:\/\/www.instagram.com\/cbal32",
+        "source": "Referral",
+        "status": "Νέος",
+        "description": "Ο χρήστος είναι ήδη μέλος σε άλλη εταιρία δικτυακού marketing δεν τα έχει καταφέρει ακόμα όμως. Πηγαίνει στα σεμινάρια της εταιρίας του και έχει μια μικρή ομάδα 25-30 ατόμων. Η εταιρία που δραστηριοποιείτε είναι η LR health and beauty η οποία είναι 35 ετών στην Ελλάδα και έχει βρει ταβάνι. Έχει καλή γνώση internet και φτιάνει δικές του ιστοσελίδες. Είναι χωρισμένος και έχει μια κόρη 11 ετών για την οποία πληρώνει διατροφή 400 ευρώ το μήνα και θα ήθελε να αλλάξει το αυτοκίνητο του με καινούριο. Στην essens θα μπορούσε να πάρει πολύ γρήγορα το πρώτο αυτοκίνητο toyota yaris ίσως και το bmw μέσα σε 9-12 μήνες.",
+        "profession": "Άνεργος",
+        "family_status": "Ελεύθερος",
+        "age": "52",
+        "interests": "Αθλητισμός, μπάσκετ, πληροφορική, ταξίδια",
+        "goals": "Να γίνει πλούσιος",
+        "available_time": "20",
+        "interest_categories": [
+            "Επιχείρηση",
+            "Work From Home",
+            "Extra Income"
+        ],
+        "social_observations": "",
+        "created_at": "2026-06-14 13:45:24"
     }
 ]

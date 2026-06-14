@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . "/config.php";
 $dataFile = __DIR__ . "/data/members.json";
 
 $members = file_exists($dataFile)
@@ -163,3 +164,148 @@ if (is_array($categories) && !empty($categories)) {
 <p>Εδώ αργότερα θα εμφανίζονται τα AI σενάρια επικοινωνίας.</p>
 
 <button disabled>Generate AI Contact Scenarios</button>
+
+<h2>AI Brief Generator</h2>
+
+<?php
+$fullName = trim(($member["first_name"] ?? "") . " " . ($member["last_name"] ?? ""));
+
+$aiBrief = "Προφίλ Υποψηφίου\n\n";
+$aiBrief .= "Ο/Η " . $fullName . " ";
+
+if (!empty($member["age"])) {
+    $aiBrief .= "είναι " . $member["age"] . " ετών. ";
+}
+
+if (!empty($member["profession"])) {
+    $aiBrief .= "Εργάζεται ως " . $member["profession"] . ". ";
+}
+
+if (!empty($member["family_status"])) {
+    $aiBrief .= "Οικογενειακή κατάσταση: " . $member["family_status"] . ". ";
+}
+
+$aiBrief .= "\n\n";
+
+if (!empty($member["interests"])) {
+    $aiBrief .= "Ενδιαφέροντα:\n" . $member["interests"] . "\n\n";
+}
+
+if (!empty($member["goals"])) {
+    $aiBrief .= "Στόχοι:\n" . $member["goals"] . "\n\n";
+}
+
+if (!empty($member["available_time"])) {
+    $aiBrief .= "Διαθέσιμος χρόνος εβδομαδιαία: " . $member["available_time"] . "\n\n";
+}
+
+if (!empty($member["description"])) {
+    $aiBrief .= "Σχόλια / Περιγραφή:\n" . $member["description"] . "\n\n";
+}
+
+if (!empty($member["social_observations"])) {
+    $aiBrief .= "Παρατηρήσεις από social media:\n" . $member["social_observations"] . "\n\n";
+}
+
+$categories = $member["interest_categories"] ?? [];
+
+if (is_array($categories) && !empty($categories)) {
+    $aiBrief .= "Κατηγορίες ενδιαφέροντος:\n- " . implode("\n- ", $categories) . "\n\n";
+}
+
+if (!empty($member["facebook_url"])) {
+    $aiBrief .= "Facebook: " . $member["facebook_url"] . "\n";
+}
+
+if (!empty($member["instagram_url"])) {
+    $aiBrief .= "Instagram: " . $member["instagram_url"] . "\n";
+}
+
+$aiBrief .= "\nΖήτησε από το AI να προτείνει 2-3 διαφορετικά σενάρια επικοινωνίας, με φιλικό και ανθρώπινο ύφος.";
+?>
+
+<textarea rows="18" cols="90" readonly><?php echo htmlspecialchars($aiBrief); ?></textarea>
+<br><br>
+
+<form method="post" action="generate-ai.php">
+
+    <input
+        type="hidden"
+        name="ai_brief"
+        value="<?php echo htmlspecialchars($aiBrief, ENT_QUOTES); ?>"
+    >
+
+    <button type="submit">
+        Generate AI Contact Scenarios
+    </button>
+
+</form>
+
+
+<?php
+
+$fullName = trim(($member["first_name"] ?? "") . " " . ($member["last_name"] ?? ""));
+
+$aiPrompt = "
+Ονοματεπώνυμο: $fullName
+
+Ηλικία: " . ($member["age"] ?? "") . "
+
+Επάγγελμα: " . ($member["profession"] ?? "") . "
+
+Οικογενειακή κατάσταση: " . ($member["family_status"] ?? "") . "
+
+Ενδιαφέροντα:
+" . ($member["interests"] ?? "") . "
+
+Στόχοι:
+" . ($member["goals"] ?? "") . "
+
+Περιγραφή:
+" . ($member["description"] ?? "") . "
+
+Παρατηρήσεις Social Media:
+" . ($member["social_observations"] ?? "") . "
+
+Κατηγορίες ενδιαφέροντος:
+" . implode(", ", $member["interest_categories"] ?? []) . "
+
+Facebook Profile:
+" . ($member["facebook_url"] ?? "") . "
+
+Instagram Profile:
+" . ($member["instagram_url"] ?? "") . "
+
+Δημιούργησε:
+1. Ψυχολογική ανάλυση
+2. 3 σενάρια επικοινωνίας
+3. Follow-up μηνύματα
+4. Πιθανές αντιρρήσεις
+5. Πρόταση προϊόντων
+";
+
+?>
+<h2>AI Master Prompt</h2>
+
+<textarea id="aiPromptBox" rows="25" cols="120" readonly><?php
+echo htmlspecialchars($aiPrompt);
+?></textarea>
+
+<br><br>
+
+<button onclick="copyPrompt()">
+    Copy AI Prompt
+</button>
+
+<script>
+function copyPrompt() {
+    const text = document.getElementById('aiPromptBox');
+    text.select();
+    text.setSelectionRange(0, 99999);
+    navigator.clipboard.writeText(text.value);
+    alert('Το prompt αντιγράφηκε.');
+}
+</script>
+<button onclick="navigator.clipboard.writeText(document.querySelector('textarea[readonly]').value)">
+    Copy AI Brief
+</button>
