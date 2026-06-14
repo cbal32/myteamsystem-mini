@@ -95,6 +95,34 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && ($_POST["action"] ?? "") === "add_t
 
 <h2>Σχόλια ή περιγραφή</h2>
 <p><?php echo nl2br(htmlspecialchars($member["description"] ?? "")); ?></p>
+<h2>Prospect Intelligence Profile</h2>
+
+<p><strong>Επάγγελμα:</strong> <?php echo htmlspecialchars($member["profession"] ?? ""); ?></p>
+<p><strong>Οικογενειακή κατάσταση:</strong> <?php echo htmlspecialchars($member["family_status"] ?? ""); ?></p>
+<p><strong>Ηλικία:</strong> <?php echo htmlspecialchars($member["age"] ?? ""); ?></p>
+
+<p><strong>Ενδιαφέροντα:</strong><br>
+<?php echo nl2br(htmlspecialchars($member["interests"] ?? "")); ?></p>
+
+<p><strong>Στόχοι:</strong><br>
+<?php echo nl2br(htmlspecialchars($member["goals"] ?? "")); ?></p>
+
+<p><strong>Διαθέσιμος χρόνος εβδομαδιαία:</strong> <?php echo htmlspecialchars($member["available_time"] ?? ""); ?></p>
+
+<p><strong>Κατηγορίες ενδιαφέροντος:</strong><br>
+<?php
+$categories = $member["interest_categories"] ?? [];
+
+if (is_array($categories) && !empty($categories)) {
+    echo htmlspecialchars(implode(", ", $categories));
+} else {
+    echo "Δεν έχουν δηλωθεί";
+}
+?>
+</p>
+
+<p><strong>Παρατηρήσεις από social media:</strong><br>
+<?php echo nl2br(htmlspecialchars($member["social_observations"] ?? "")); ?></p>
 <h2>Timeline / Ιστορικό Επικοινωνίας</h2>
 
 <form method="post">

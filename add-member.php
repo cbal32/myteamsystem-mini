@@ -24,6 +24,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         "source" => $_POST["source"] ?? "",
         "status" => $_POST["status"] ?? "Νέος",
         "description" => $_POST["description"] ?? "",
+        "profession" => $_POST["profession"] ?? "",
+"family_status" => $_POST["family_status"] ?? "",
+"age" => $_POST["age"] ?? "",
+"interests" => $_POST["interests"] ?? "",
+"goals" => $_POST["goals"] ?? "",
+"available_time" => $_POST["available_time"] ?? "",
+"interest_categories" => $_POST["interest_categories"] ?? [],
+"social_observations" => $_POST["social_observations"] ?? "",
         "created_at" => date("Y-m-d H:i:s")
     ];
 
@@ -73,7 +81,30 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     </select><br><br>
 
     <textarea name="description" rows="6" cols="50" placeholder="Σχόλια ή περιγραφή υποψηφίου"></textarea><br><br>
+<h2>Prospect Intelligence Profile</h2>
 
+<input type="text" name="profession" placeholder="Επάγγελμα"><br><br>
+
+<input type="text" name="family_status" placeholder="Οικογενειακή κατάσταση"><br><br>
+
+<input type="number" name="age" placeholder="Ηλικία"><br><br>
+
+<textarea name="interests" rows="3" cols="50" placeholder="Ενδιαφέροντα"></textarea><br><br>
+
+<textarea name="goals" rows="3" cols="50" placeholder="Οικονομικοί ή προσωπικοί στόχοι"></textarea><br><br>
+
+<input type="text" name="available_time" placeholder="Διαθέσιμος χρόνος εβδομαδιαία"><br><br>
+
+<p><strong>Κατηγορίες ενδιαφέροντος:</strong></p>
+
+<label><input type="checkbox" name="interest_categories[]" value="Άρωμα"> Άρωμα</label><br>
+<label><input type="checkbox" name="interest_categories[]" value="Συμπληρώματα"> Συμπληρώματα</label><br>
+<label><input type="checkbox" name="interest_categories[]" value="Καλλυντικά"> Καλλυντικά</label><br>
+<label><input type="checkbox" name="interest_categories[]" value="Επιχείρηση"> Επιχείρηση</label><br>
+<label><input type="checkbox" name="interest_categories[]" value="Work From Home"> Work From Home</label><br>
+<label><input type="checkbox" name="interest_categories[]" value="Extra Income"> Extra Income</label><br><br>
+
+<textarea name="social_observations" rows="5" cols="50" placeholder="Τι παρατήρησες από τα social media του υποψηφίου;"></textarea><br><br>
     <button type="submit">Αποθήκευση Υποψηφίου</button>
 </form>
 
