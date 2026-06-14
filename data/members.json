@@ -1,1 +1,30 @@
-[]
+[
+    {
+        "id": 1781442969,
+        "first_name": "CHRISTOS",
+        "last_name": "VALSAMIDIS",
+        "phone": "6994212121",
+        "email": "cv.valsamidis@gmail.com",
+        "country": "Ελλάδα",
+        "facebook_url": "https:\/\/www.facebook.com\/cbal32",
+        "instagram_url": "https:\/\/www.instagram.com\/cbal32",
+        "source": "",
+        "status": "Νέος",
+        "description": "",
+        "created_at": "2026-06-14 13:16:09"
+    },
+    {
+        "id": 1781443122,
+        "first_name": "CHRISTOS",
+        "last_name": "VALSAMIDIS",
+        "phone": "6994212121",
+        "email": "cv.valsamidis@gmail.com",
+        "country": "Ελλάδα",
+        "facebook_url": "",
+        "instagram_url": "",
+        "source": "Facebook",
+        "status": "Νέος",
+        "description": "",
+        "created_at": "2026-06-14 13:18:42"
+    }
+]
