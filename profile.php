@@ -124,6 +124,24 @@ if (is_array($categories) && !empty($categories)) {
 
 <p><strong>Παρατηρήσεις από social media:</strong><br>
 <?php echo nl2br(htmlspecialchars($member["social_observations"] ?? "")); ?></p>
+
+
+<h2>Follow-Up Manager</h2>
+
+<p><strong>Επόμενη επικοινωνία:</strong>
+<?php echo htmlspecialchars($member["next_follow_up_date"] ?? ""); ?>
+</p>
+
+<p><strong>Επόμενη ενέργεια:</strong>
+<?php echo htmlspecialchars($member["next_action"] ?? ""); ?>
+</p>
+
+<p><strong>Προτεραιότητα:</strong>
+<?php echo htmlspecialchars($member["priority"] ?? "Medium"); ?>
+</p>
+
+
+
 <h2>Timeline / Ιστορικό Επικοινωνίας</h2>
 
 <form method="post">

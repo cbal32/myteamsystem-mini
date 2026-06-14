@@ -59,5 +59,30 @@
         ],
         "social_observations": "",
         "created_at": "2026-06-14 13:45:24"
+    },
+    {
+        "id": 1781447480,
+        "first_name": "CHRISTOS",
+        "last_name": "VALSAMIDIS",
+        "phone": "6994212121",
+        "email": "cv.valsamidis@gmail.com",
+        "country": "Ελλάδα",
+        "facebook_url": "https:\/\/www.facebook.com\/cbal32",
+        "instagram_url": "https:\/\/www.instagram.com\/cbal32",
+        "source": "Referral",
+        "status": "Νέος",
+        "description": "",
+        "profession": "",
+        "family_status": "",
+        "age": "",
+        "interests": "",
+        "goals": "",
+        "available_time": "",
+        "interest_categories": [],
+        "social_observations": "",
+        "next_follow_up_date": "2026-06-18",
+        "next_action": "Πρόσκληση στο σεμινάριο",
+        "priority": "Medium",
+        "created_at": "2026-06-14 14:31:20"
     }
 ]

@@ -32,6 +32,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 "available_time" => $_POST["available_time"] ?? "",
 "interest_categories" => $_POST["interest_categories"] ?? [],
 "social_observations" => $_POST["social_observations"] ?? "",
+"next_follow_up_date" => $_POST["next_follow_up_date"] ?? "",
+"next_action" => $_POST["next_action"] ?? "",
+"priority" => $_POST["priority"] ?? "Medium",
         "created_at" => date("Y-m-d H:i:s")
     ];
 
@@ -105,7 +108,23 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <label><input type="checkbox" name="interest_categories[]" value="Extra Income"> Extra Income</label><br><br>
 
 <textarea name="social_observations" rows="5" cols="50" placeholder="Τι παρατήρησες από τα social media του υποψηφίου;"></textarea><br><br>
-    <button type="submit">Αποθήκευση Υποψηφίου</button>
+
+<h2>Follow-Up Manager</h2>
+
+<label>Επόμενη επικοινωνία:</label><br>
+<input type="date" name="next_follow_up_date"><br><br>
+
+<label>Επόμενη ενέργεια:</label><br>
+<input type="text" name="next_action" placeholder="π.χ. Πρόσκληση στο webinar"><br><br>
+
+<label>Προτεραιότητα:</label><br>
+<select name="priority">
+    <option value="Low">Low</option>
+    <option value="Medium" selected>Medium</option>
+    <option value="High">High</option>
+</select><br><br>
+
+<button type="submit">Αποθήκευση Υποψηφίου</button>
 </form>
 
 <p><a href="members.php">Προβολή λίστας υποψηφίων</a></p>
