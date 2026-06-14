@@ -38,11 +38,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && ($_POST["action"] ?? "") === "add_t
                     $item["timeline"] = [];
                 }
 
-                $item["timeline"][] = [
-                    "date" => date("Y-m-d H:i:s"),
-                    "type" => $type,
-                    "note" => $note
-                ];
+$item["timeline"][] = [
+    "date" => date("Y-m-d H:i:s"),
+    "type" => $type,
+    "note" => $note,
+    "next_action" => $_POST["timeline_next_action"] ?? ""
+];
 
                 $member = $item;
                 break;
@@ -144,12 +145,13 @@ if (is_array($categories) && !empty($categories)) {
 
 
 
-<h2>Timeline / Ιστορικό Επικοινωνίας</h2>
+<h2>Notes Timeline</h2>
 
 <form method="post">
     <input type="hidden" name="action" value="add_timeline_note">
 
     <textarea name="timeline_note" rows="4" cols="60" placeholder="Γράψε σημείωση επικοινωνίας..."></textarea><br><br>
+<input type="text" name="timeline_next_action" placeholder="Επόμενη ενέργεια π.χ. Πρόσκληση σε webinar"><br><br>
 
     <select name="timeline_type">
         <option value="Σημείωση">Σημείωση</option>
@@ -173,6 +175,11 @@ if (is_array($categories) && !empty($categories)) {
                 <?php echo htmlspecialchars($entry["type"] ?? ""); ?>
                 <br>
                 <?php echo nl2br(htmlspecialchars($entry["note"] ?? "")); ?>
+                <?php if (!empty($entry["next_action"])): ?>
+    <br>
+    <strong>Επόμενη ενέργεια:</strong>
+    <?php echo htmlspecialchars($entry["next_action"]); ?>
+<?php endif; ?>
             </li>
             <br>
         <?php endforeach; ?>
