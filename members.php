@@ -133,6 +133,7 @@ $members = $filteredMembers;
             <th>Priority</th>
             <th>Follow-Up</th>
             <th>Ημερομηνία</th>
+            <th>Ενέργειες</th>
         </tr>
 
         <?php foreach ($members as $member): ?>
@@ -181,8 +182,21 @@ $members = $filteredMembers;
                     ?>
                 </td>
 
-                <td><?php echo htmlspecialchars($member["created_at"] ?? ""); ?></td>
-            </tr>
+  <td><?php echo htmlspecialchars($member["created_at"] ?? ""); ?></td>
+
+<td>
+    <a href="edit-member.php?id=<?php echo urlencode($member["id"] ?? ""); ?>">
+        ✏ Edit
+    </a>
+
+    <br>
+
+    <a href="delete-member.php?id=<?php echo urlencode($member["id"] ?? ""); ?>" style="color:red;">
+        🗑 Delete
+    </a>
+</td>
+
+</tr>
         <?php endforeach; ?>
     </table>
 <?php endif; ?>
