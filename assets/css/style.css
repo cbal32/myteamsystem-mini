@@ -314,3 +314,63 @@ a {
         margin-top: 8px;
     }
 }
+
+.section-card {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 20px;
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 10px 30px rgba(15,23,42,.05);
+}
+
+.profile-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 24px;
+}
+
+@media (max-width: 768px) {
+    .profile-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.info-row {
+    margin-bottom: 10px;
+}
+
+.info-label {
+    font-weight: 700;
+    color: #6b7280;
+}
+
+.timeline-entry {
+    border-left: 4px solid #2563eb;
+    padding-left: 15px;
+    margin-bottom: 20px;
+}
+
+.section-card textarea {
+    width: 100%;
+    max-width: 100%;
+    min-height: 250px;
+    resize: vertical;
+    box-sizing: border-box;
+}
+
+.section-card input[type="text"],
+.section-card input[type="email"],
+.section-card input[type="url"],
+.section-card input[type="number"],
+.section-card input[type="date"],
+.section-card select {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.section-card select {
+    max-width: 260px;
+}
