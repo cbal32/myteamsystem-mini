@@ -76,31 +76,7 @@ $fullName = trim(($member["first_name"] ?? "") . " " . ($member["last_name"] ?? 
 $selectedCategories = $member["interest_categories"] ?? [];
 ?>
 
-<link rel="stylesheet" href="assets/css/style.css">
-
-<div class="app-layout">
-
-    <aside class="sidebar">
-
-        <div class="profile-card">
-            <div class="profile-avatar">CV</div>
-            <div class="profile-name">Χρήστος Βαλσαμίδης</div>
-            <div class="profile-role">ESSENS Leader</div>
-        </div>
-
-        <h2>MTS CRM</h2>
-
-        <a href="members.php">📊 Dashboard</a>
-        <a href="members.php?filter=all">👥 Prospects</a>
-        <a href="add-member.php">➕ New Prospect</a>
-        <a href="members.php?filter=today">📅 Follow Ups</a>
-        <a href="members.php?filter=high">⭐ Priority</a>
-        <a href="members.php#ai-tools">🤖 AI Tools</a>
-        <a href="#settings">⚙ Settings</a>
-
-    </aside>
-
-    <main class="main-content">
+<?php require __DIR__ . "/includes/layout-start.php"; ?>
 
         <div class="page-header">
             <h1>Edit Prospect</h1>
@@ -302,5 +278,4 @@ $selectedCategories = $member["interest_categories"] ?? [];
 
         </form>
 
-    </main>
-</div>
+<?php require __DIR__ . "/includes/layout-end.php"; ?>
