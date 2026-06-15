@@ -87,64 +87,64 @@ $members = $filteredMembers;
 <?php require __DIR__ . "/includes/layout-start.php"; ?>
 
 <div class="page-header">
-    <h1>AI Prospect Manager</h1>
-    <p>Διαχείριση υποψηφίων, follow-ups και AI επικοινωνίας.</p>
+    <h1><?php echo t('prospect_manager'); ?></h1>
+    <p><?php echo t('prospect_manager_desc'); ?></p>
 </div>
 
-<h2>Dashboard</h2>
+<h2><?php echo t('dashboard'); ?></h2>
 
 <div class="dashboard">
 
     <a href="members.php?filter=all">
         <div class="card">
-            <strong>Σύνολο Prospects</strong><br>
+            <strong><?php echo t('total_prospects'); ?></strong><br>
             <?php echo $totalProspects; ?>
         </div>
     </a>
 
     <a href="members.php?filter=overdue">
         <div class="card">
-            <strong>🔴 Overdue</strong><br>
+            <strong>🔴 <?php echo t('overdue'); ?></strong><br>
             <?php echo $overdueCount; ?>
         </div>
     </a>
 
     <a href="members.php?filter=today">
         <div class="card">
-            <strong>🟠 Today</strong><br>
+            <strong>🟠 <?php echo t('today'); ?></strong><br>
             <?php echo $todayCount; ?>
         </div>
     </a>
 
     <a href="members.php?filter=scheduled">
         <div class="card">
-            <strong>🟢 Scheduled</strong><br>
+            <strong>🟢 <?php echo t('scheduled'); ?></strong><br>
             <?php echo $scheduledCount; ?>
         </div>
     </a>
 
     <a href="members.php?filter=high">
         <div class="card">
-            <strong>⭐ High Priority</strong><br>
+            <strong>⭐ <?php echo t('high_priority'); ?></strong><br>
             <?php echo $highPriorityCount; ?>
         </div>
     </a>
 
     <div class="card">
-        <strong>✅ Εγγεγραμμένοι</strong><br>
+        <strong>✅ <?php echo t('registered'); ?></strong><br>
         <?php echo $registeredCount; ?>
     </div>
 
 </div>
 
 <p>
-    <strong>Ενεργό φίλτρο:</strong>
+    <strong><?php echo t('active_filter'); ?>:</strong>
     <?php echo htmlspecialchars($filter); ?>
 </p>
 
 <?php if ($search !== ""): ?>
     <p>
-        <strong>Αναζήτηση:</strong>
+        <strong><?php echo t('search_term'); ?>:</strong>
         <?php echo htmlspecialchars($search); ?>
     </p>
 <?php endif; ?>
@@ -156,30 +156,36 @@ $members = $filteredMembers;
         type="text"
         name="search"
         value="<?php echo htmlspecialchars($search); ?>"
-        placeholder="Αναζήτηση με όνομα, τηλέφωνο, email, επάγγελμα..."
+        placeholder="<?php echo t('search_extended'); ?>"
     >
 
-    <button type="submit">Search</button>
+    <button type="submit"><?php echo t('search'); ?></button>
 
-    <a href="members.php?filter=<?php echo urlencode($filter); ?>">Clear</a>
+    <a href="members.php?filter=<?php echo urlencode($filter); ?>">
+        <?php echo t('clear'); ?>
+    </a>
 </form>
 
-<p><a href="add-member.php" class="button-link">+ Προσθήκη νέου υποψηφίου</a></p>
+<p>
+    <a href="add-member.php" class="button-link">
+        + <?php echo t('add_new_prospect'); ?>
+    </a>
+</p>
 
 <?php if (empty($members)): ?>
-    <p>Δεν υπάρχουν υποψήφιοι για αυτό το φίλτρο.</p>
+    <p><?php echo t('no_prospects_filter'); ?></p>
 <?php else: ?>
     <table>
         <tr>
-            <th>Όνομα</th>
-            <th>Τηλέφωνο</th>
-            <th>Email</th>
-            <th>Πηγή</th>
-            <th>Κατάσταση</th>
-            <th>Priority</th>
-            <th>Follow-Up</th>
-            <th>Ημερομηνία</th>
-            <th>Ενέργειες</th>
+            <th><?php echo t('name'); ?></th>
+            <th><?php echo t('phone'); ?></th>
+            <th><?php echo t('email'); ?></th>
+            <th><?php echo t('source'); ?></th>
+            <th><?php echo t('status'); ?></th>
+            <th><?php echo t('priority_col'); ?></th>
+            <th><?php echo t('follow_up'); ?></th>
+            <th><?php echo t('date'); ?></th>
+            <th><?php echo t('actions'); ?></th>
         </tr>
 
         <?php foreach ($members as $member): ?>
@@ -193,7 +199,41 @@ $members = $filteredMembers;
                 <td><?php echo htmlspecialchars($member["phone"] ?? ""); ?></td>
                 <td><?php echo htmlspecialchars($member["email"] ?? ""); ?></td>
                 <td><?php echo htmlspecialchars($member["source"] ?? ""); ?></td>
-                <td><?php echo htmlspecialchars($member["status"] ?? ""); ?></td>
+               <td>
+
+<?php
+
+$status = $member["status"] ?? "";
+
+switch ($status) {
+
+    case "Νέος":
+        echo t('status_new');
+        break;
+
+    case "Επικοινωνήθηκε":
+        echo t('status_contacted');
+        break;
+
+    case "Ενδιαφέρεται":
+        echo t('status_interested');
+        break;
+
+    case "Εγγράφηκε":
+        echo t('status_registered');
+        break;
+
+    case "Δεν ενδιαφέρεται":
+        echo t('status_not_interested');
+        break;
+
+    default:
+        echo htmlspecialchars($status);
+}
+
+?>
+
+</td>
 
                 <td>
                     <?php
@@ -201,13 +241,15 @@ $members = $filteredMembers;
 
                     switch ($priority) {
                         case "High":
-                            echo "<span style='color:red;font-weight:bold;'>🔴 High</span>";
-                            break;
-                        case "Low":
-                            echo "<span style='color:green;font-weight:bold;'>🟢 Low</span>";
-                            break;
-                        default:
-                            echo "<span style='color:orange;font-weight:bold;'>🟠 Medium</span>";
+    echo "<span style='color:red;font-weight:bold;'>🔴 " . t('priority_high') . "</span>";
+    break;
+
+case "Low":
+    echo "<span style='color:green;font-weight:bold;'>🟢 " . t('priority_low') . "</span>";
+    break;
+
+default:
+    echo "<span style='color:orange;font-weight:bold;'>🟠 " . t('priority_medium') . "</span>";
                     }
                     ?>
                 </td>
@@ -217,13 +259,13 @@ $members = $filteredMembers;
                     $followUpDate = $member["next_follow_up_date"] ?? "";
 
                     if ($followUpDate === "") {
-                        echo "<span style='color:#666;'>Δεν έχει οριστεί</span>";
+                        echo "<span style='color:#666;'>" . t('not_set') . "</span>";
                     } elseif ($followUpDate < $today) {
-                        echo "<span style='color:red;font-weight:bold;'>🔴 Overdue</span><br>" . htmlspecialchars($followUpDate);
+                        echo "<span style='color:red;font-weight:bold;'>🔴 " . t('overdue') . "</span><br>" . htmlspecialchars($followUpDate);
                     } elseif ($followUpDate === $today) {
-                        echo "<span style='color:orange;font-weight:bold;'>🟠 Today</span><br>" . htmlspecialchars($followUpDate);
+                        echo "<span style='color:orange;font-weight:bold;'>🟠 " . t('today') . "</span><br>" . htmlspecialchars($followUpDate);
                     } else {
-                        echo "<span style='color:green;font-weight:bold;'>🟢 Scheduled</span><br>" . htmlspecialchars($followUpDate);
+                        echo "<span style='color:green;font-weight:bold;'>🟢 " . t('scheduled') . "</span><br>" . htmlspecialchars($followUpDate);
                     }
                     ?>
                 </td>
@@ -232,13 +274,13 @@ $members = $filteredMembers;
 
                 <td>
                     <a href="edit-member.php?id=<?php echo urlencode($member["id"] ?? ""); ?>">
-                        ✏ Edit
+                        ✏ <?php echo t('edit'); ?>
                     </a>
 
                     <br>
 
                     <a href="delete-member.php?id=<?php echo urlencode($member["id"] ?? ""); ?>" class="danger-link">
-                        🗑 Delete
+                        🗑 <?php echo t('delete'); ?>
                     </a>
                 </td>
             </tr>
