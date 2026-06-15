@@ -112,5 +112,75 @@ return [
 
 'prompt_copied' => 'Το prompt αντιγράφηκε.',
 
+
+
+'new_prospect_title' => 'Νέος Υποψήφιος',
+'new_prospect_desc' => 'Καταχώρηση νέου υποψηφίου συνεργάτη και προετοιμασία AI ανάλυσης.',
+'prospect_saved' => 'Ο υποψήφιος αποθηκεύτηκε επιτυχώς.',
+
+'first_name' => 'Όνομα',
+'last_name' => 'Επώνυμο',
+'basic_details' => 'Βασικά στοιχεία',
+'social_marketing' => 'Social & Marketing',
+
+'facebook_url' => 'Facebook Profile URL',
+'instagram_url' => 'Instagram Profile URL',
+'contact_source' => 'Πηγή επαφής',
+
+'new_status' => 'Νέος',
+'contacted_status' => 'Επικοινωνήθηκε',
+'interested_status' => 'Ενδιαφέρεται',
+'registered_status' => 'Εγγράφηκε',
+'not_interested_status' => 'Δεν ενδιαφέρεται',
+
+'low_priority' => 'Χαμηλή Προτεραιότητα',
+'medium_priority' => 'Μεσαία Προτεραιότητα',
+'high_priority_label' => 'Υψηλή Προτεραιότητα',
+
+'comments_description' => 'Σχόλια ή μικρό βιογραφικό υποψηφίου',
+'economic_personal_goals' => 'Οικονομικοί ή προσωπικοί στόχοι',
+
+'perfume' => 'Άρωμα',
+'supplements' => 'Συμπληρώματα',
+'cosmetics' => 'Καλλυντικά',
+'business' => 'Επιχείρηση',
+'work_from_home' => 'Work From Home',
+'extra_income' => 'Extra Income',
+
+'social_observations_placeholder' => 'Τι παρατήρησες από τα social media του υποψηφίου;',
+'webinar_invitation_example' => 'π.χ. Πρόσκληση στο webinar',
+
+'save_prospect' => 'Αποθήκευση Υποψηφίου',
+'save_changes' => 'Αποθήκευση Αλλαγών',
+'view_list' => 'Προβολή λίστας',
+'cancel' => 'Άκυρο',
+
+'edit_prospect_title' => 'Επεξεργασία Υποψηφίου',
+'edit_prospect_desc' => 'Επεξεργασία στοιχείων για',
+
+'friend' => 'Φίλος',
+'acquaintance' => 'Γνωστός',
+'seminar_source' => 'Από Σεμινάριο',
+'referral_source' => 'Από Σύσταση',
+'delete' => 'Διαγραφή',
+'confirm_delete' => 'Είσαι σίγουρος ότι θέλεις διαγραφή;',
+
+'delete_prospect' => 'Διαγραφή Υποψηφίου',
+'delete_prospect_desc' => 'Οριστική διαγραφή υποψηφίου από το CRM.',
+'delete_confirmation_text' => 'Είσαι σίγουρος ότι θέλεις να διαγράψεις τον παρακάτω υποψήφιο;',
+'warning' => 'Προσοχή',
+'delete_warning_text' => 'Η διαγραφή είναι μόνιμη και δεν μπορεί να αναιρεθεί.',
+'yes_delete' => 'Ναι, Διαγραφή',
+'prospect_not_found' => 'Ο υποψήφιος δεν βρέθηκε',
+
+
+
+
+
+
+
+
+
+
 ];
 

@@ -112,4 +112,66 @@ return [
 
 'prompt_copied' => 'Промпт скопирован.',
 
+'new_prospect_title' => 'Новый кандидат',
+'new_prospect_desc' => 'Добавление нового кандидата и подготовка AI-анализа.',
+'prospect_saved' => 'Кандидат успешно сохранён.',
+
+'first_name' => 'Имя',
+'last_name' => 'Фамилия',
+'basic_details' => 'Основные данные',
+'social_marketing' => 'Соцсети и маркетинг',
+
+'facebook_url' => 'URL профиля Facebook',
+'instagram_url' => 'URL профиля Instagram',
+'contact_source' => 'Источник контакта',
+
+'new_status' => 'Новый',
+'contacted_status' => 'Связались',
+'interested_status' => 'Заинтересован',
+'registered_status' => 'Зарегистрирован',
+'not_interested_status' => 'Не заинтересован',
+
+'low_priority' => 'Низкий приоритет',
+'medium_priority' => 'Средний приоритет',
+'high_priority_label' => 'Высокий приоритет',
+
+'comments_description' => 'Комментарии или краткое описание кандидата',
+'economic_personal_goals' => 'Финансовые или личные цели',
+
+'perfume' => 'Парфюм',
+'supplements' => 'Добавки',
+'cosmetics' => 'Косметика',
+'business' => 'Бизнес',
+'work_from_home' => 'Работа из дома',
+'extra_income' => 'Дополнительный доход',
+
+'social_observations_placeholder' => 'Что вы заметили в социальных сетях кандидата?',
+'webinar_invitation_example' => 'например, приглашение на вебинар',
+
+'save_prospect' => 'Сохранить кандидата',
+'save_changes' => 'Сохранить изменения',
+'view_list' => 'Показать список',
+'cancel' => 'Отмена',
+
+'edit_prospect_title' => 'Редактировать кандидата',
+'edit_prospect_desc' => 'Редактирование данных для',
+
+
+'friend' => 'Друг',
+'acquaintance' => 'Знакомый',
+'seminar_source' => 'После семинара',
+'referral_source' => 'По рекомендации',
+'delete' => 'Удалить',
+'confirm_delete' => 'Вы уверены, что хотите удалить этого кандидата?',
+
+
+'delete_prospect' => 'Удаление кандидата',
+'delete_prospect_desc' => 'Полное удаление кандидата из CRM.',
+'delete_confirmation_text' => 'Вы уверены, что хотите удалить этого кандидата?',
+'warning' => 'Внимание',
+'delete_warning_text' => 'Удаление необратимо и не может быть отменено.',
+'yes_delete' => 'Да, удалить',
+'prospect_not_found' => 'Кандидат не найден',
+
+
 ];

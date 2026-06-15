@@ -298,17 +298,28 @@ default:
 
 
 
-                <td>
-                    <a href="edit-member.php?id=<?php echo urlencode($member["id"] ?? ""); ?>">
-                        ✏ <?php echo t('edit'); ?>
-                    </a>
+               <td>
 
-                    <br>
+    <div class="action-buttons">
 
-                    <a href="delete-member.php?id=<?php echo urlencode($member["id"] ?? ""); ?>" class="danger-link">
-                        🗑 <?php echo t('delete'); ?>
-                    </a>
-                </td>
+       <a
+    class="action-btn action-edit"
+    href="edit-member.php?id=<?php echo urlencode($member["id"] ?? ""); ?>"
+    title="<?php echo t('edit_prospect'); ?>">
+            ✏️
+        </a>
+
+      <a
+    class="action-btn action-delete"
+    href="delete-member.php?id=<?php echo urlencode($member["id"] ?? ""); ?>"
+    title="<?php echo t('delete'); ?>"
+    onclick="return confirm('<?php echo t('confirm_delete'); ?>');">
+    🗑️
+</a>
+
+    </div>
+
+</td>
             </tr>
         <?php endforeach; ?>
     </table>

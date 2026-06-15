@@ -22,8 +22,6 @@ function t($key)
     return $GLOBALS['translations'][$key] ?? $key;
 }
 
-
-
 function formatDate($date)
 {
     if (empty($date)) {
@@ -33,6 +31,10 @@ function formatDate($date)
     global $lang;
 
     $timestamp = strtotime($date);
+
+    if (!$timestamp) {
+        return $date;
+    }
 
     $months = [
 
@@ -92,4 +94,21 @@ function formatDate($date)
     }
 
     return "$day $month $year";
+}
+
+function formatDateTime($dateTime)
+{
+    if (empty($dateTime)) {
+        return "";
+    }
+
+    $timestamp = strtotime($dateTime);
+
+    if (!$timestamp) {
+        return $dateTime;
+    }
+
+    return formatDate(date('Y-m-d', $timestamp))
+        . ', '
+        . date('H:i', $timestamp);
 }

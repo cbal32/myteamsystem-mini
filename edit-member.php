@@ -79,17 +79,21 @@ $selectedCategories = $member["interest_categories"] ?? [];
 <?php require __DIR__ . "/includes/layout-start.php"; ?>
 
         <div class="page-header">
-            <h1>Edit Prospect</h1>
-            <p>Επεξεργασία στοιχείων για: <?php echo htmlspecialchars($fullName); ?></p>
+<h1><?php echo t('edit_prospect_title'); ?></h1>
+
+<p>
+    <?php echo t('edit_prospect_desc'); ?>:
+    <?php echo htmlspecialchars($fullName); ?>
+</p>
         </div>
 
         <p>
             <a class="button-link" href="profile.php?id=<?php echo urlencode($id); ?>">
-                ← Επιστροφή στο προφίλ
+              ← <?php echo t('back_to_list'); ?>
             </a>
 
             <a class="button-link" href="members.php">
-                Προβολή λίστας
+                ← <?php echo t('back_to_list'); ?>
             </a>
         </p>
 
@@ -101,67 +105,119 @@ $selectedCategories = $member["interest_categories"] ?? [];
                     <h2>Βασικά στοιχεία</h2>
 
                    <div class="form-group">
-         <label>Όνομα</label>
+         <label><?php echo t('first_name'); ?></label>
     <input type="text" name="first_name" value="<?php echo htmlspecialchars($member["first_name"] ?? ""); ?>">
 </div>
 
       <div class="form-group">
-    <label>Επώνυμο</label>
+   <label><?php echo t('last_name'); ?></label>
     <input type="text" name="last_name" value="<?php echo htmlspecialchars($member["last_name"] ?? ""); ?>">
 </div>
 
 <div class="form-group">
-        <label>Τηλέφωνο</label>
+        <label><?php echo t('last_name'); ?></label>
                     <input type="text" name="phone" value="<?php echo htmlspecialchars($member["phone"] ?? ""); ?>" placeholder="Τηλέφωνο"><br><br>
 </div>
                     <div class="form-group">
-                            <label>Email</label>
+                            <label><?php echo t('email'); ?></label>
                     <input type="email" name="email" value="<?php echo htmlspecialchars($member["email"] ?? ""); ?>" placeholder="Email"><br><br>
 </div>
                     <div class="form-group">
-                            <label>Χώρα</label>
+                            <label><?php echo t('email'); ?></label>
                     <input type="text" name="country" value="<?php echo htmlspecialchars($member["country"] ?? ""); ?>" placeholder="Χώρα">
                     </div>
                 </div>
 
                 <div class="section-card">
-                    <h2>Social & Marketing</h2>
+                    <h2><?php echo t('social_marketing'); ?></h2>
 
                     <input type="url" name="facebook_url" value="<?php echo htmlspecialchars($member["facebook_url"] ?? ""); ?>" placeholder="Facebook Profile URL"><br><br>
 
                     <input type="url" name="instagram_url" value="<?php echo htmlspecialchars($member["instagram_url"] ?? ""); ?>" placeholder="Instagram Profile URL"><br><br>
 
-                    <label>Πηγή επαφής:</label><br>
+                   <label><?php echo t('contact_source'); ?></label>
                     <select name="source">
                         <?php
-                        $sources = ["", "Facebook", "Instagram", "TikTok", "Website", "Seminar", "Referral"];
+                      $sources = [
+    
+    "Friend" => t('friend'),
+    "Acquaintance" => t('acquaintance'),
+    "Facebook" => "Facebook",
+    "Instagram" => "Instagram",
+    "TikTok" => "TikTok",
+    "Website" => "Website",
+    "Seminar" => t('seminar_source'),
+    "Referral" => t('referral_source')
+];
 
-                        foreach ($sources as $source) {
-                            $label = $source === "" ? "Πηγή επαφής" : $source;
-                            echo "<option value=\"" . htmlspecialchars($source) . "\" " . isSelected($member["source"] ?? "", $source) . ">" . htmlspecialchars($label) . "</option>";
-                        }
+                        foreach ($sources as $value => $label) {
+
+    echo "<option value='" .
+        htmlspecialchars($value) .
+        "' " .
+        isSelected($member["source"] ?? "", $value) .
+        ">" .
+        htmlspecialchars($label) .
+        "</option>";
+}
                         ?>
                     </select><br><br>
 
-                    <label>Κατάσταση:</label><br>
+                    <label><?php echo t('status'); ?></label><br>
                     <select name="status">
                         <?php
-                        $statuses = ["Νέος", "Επικοινωνήθηκε", "Ενδιαφέρεται", "Εγγράφηκε", "Δεν ενδιαφέρεται"];
+                        
 
-                        foreach ($statuses as $status) {
-                            echo "<option value=\"" . htmlspecialchars($status) . "\" " . isSelected($member["status"] ?? "Νέος", $status) . ">" . htmlspecialchars($status) . "</option>";
-                        }
+$statuses = [
+    "Νέος" => t('new_status'),
+    "Επικοινωνήθηκε" => t('contacted_status'),
+    "Ενδιαφέρεται" => t('interested_status'),
+    "Εγγράφηκε" => t('registered_status'),
+    "Δεν ενδιαφέρεται" => t('not_interested_status')
+];
+
+foreach ($statuses as $value => $label) {
+
+    echo "<option value='" .
+        htmlspecialchars($value) .
+        "' " .
+        isSelected($member["status"] ?? "Νέος", $value) .
+        ">" .
+        htmlspecialchars($label) .
+        "</option>";
+}
+
+
+
+
+                      
                         ?>
                     </select><br><br>
 
-                    <label>Priority:</label><br>
+                    <label><?php echo t('priority_col'); ?></label><br>
                     <select name="priority">
                         <?php
-                        $priorities = ["Low", "Medium", "High"];
+                     
+$priorities = [
+    "Low" => t('low_priority'),
+    "Medium" => t('medium_priority'),
+    "High" => t('high_priority_label')
+];
 
-                        foreach ($priorities as $priority) {
-                            echo "<option value=\"" . htmlspecialchars($priority) . "\" " . isSelected($member["priority"] ?? "Medium", $priority) . ">" . htmlspecialchars($priority) . "</option>";
-                        }
+foreach ($priorities as $value => $label) {
+
+    echo "<option value='" .
+        htmlspecialchars($value) .
+        "' " .
+        isSelected($member["priority"] ?? "Medium", $value) .
+        ">" .
+        htmlspecialchars($label) .
+        "</option>";
+}
+
+
+
+
                         ?>
                     </select>
                 </div>
@@ -169,9 +225,9 @@ $selectedCategories = $member["interest_categories"] ?? [];
             </div>
 
             <div class="section-card">
-                <h2>Περιγραφή</h2>
+              <h2><?php echo t('description'); ?></h2>
 
-                <label>Σχόλια / Περιγραφή</label>
+                <label><?php echo t('comments_description'); ?></label>
 
 <textarea name="description" rows="6"><?php echo htmlspecialchars($member["description"] ?? ""); ?></textarea>
             </div>
@@ -182,42 +238,42 @@ $selectedCategories = $member["interest_categories"] ?? [];
                 <div class="profile-grid">
                     <div>
                     <div class="form-group">
-    <label>Επάγγελμα</label>
+    <label><?php echo t('profession'); ?></label>
     <input type="text" name="profession"
            value="<?php echo htmlspecialchars($member["profession"] ?? ""); ?>">
 </div>
 
 <div class="form-group">
-    <label>Οικογενειακή κατάσταση</label>
+    <label><?php echo t('family_status'); ?></label>
     <input type="text" name="family_status"
            value="<?php echo htmlspecialchars($member["family_status"] ?? ""); ?>">
 </div>
 
 <div class="form-group">
-    <label>Ηλικία</label>
+    <label><?php echo t('age'); ?></label>
     <input type="number" name="age"
            value="<?php echo htmlspecialchars($member["age"] ?? ""); ?>">
 </div>
 
 <div class="form-group">
-    <label>Διαθέσιμος χρόνος εβδομαδιαία</label>
+    <label><?php echo t('available_time'); ?></label>
     <input type="text" name="available_time"
            value="<?php echo htmlspecialchars($member["available_time"] ?? ""); ?>">
 </div>
 </div>
 
                     <div>
-                        <label>Ενδιαφέροντα</label>
+                        <label><?php echo t('interests'); ?></label>
 
 <textarea name="interests" rows="4"><?php echo htmlspecialchars($member["interests"] ?? ""); ?></textarea><br><br>
 
-                        <label>Στόχοι</label>
+                        <label><?php echo t('goals'); ?></label>
 
 <textarea name="goals" rows="4"><?php echo htmlspecialchars($member["goals"] ?? ""); ?></textarea>
                     </div>
                 </div>
 
-                <p><strong>Κατηγορίες ενδιαφέροντος:</strong></p>
+                <?php echo t('interest_categories'); ?>
 
                 <div class="checkbox-grid">
                     <label><input type="checkbox" name="interest_categories[]" value="Άρωμα" <?php echo isChecked($selectedCategories, "Άρωμα"); ?>> Άρωμα</label>
@@ -230,7 +286,7 @@ $selectedCategories = $member["interest_categories"] ?? [];
 
                 <br>
 
-                <label>Παρατηρήσεις Social Media</label>
+                <label><?php echo t('social_observations'); ?></label>
 
 <textarea name="social_observations" rows="5"><?php echo htmlspecialchars($member["social_observations"] ?? ""); ?></textarea>
             </div>
@@ -241,7 +297,7 @@ $selectedCategories = $member["interest_categories"] ?? [];
     <div class="followup-grid">
 
         <div class="form-group">
-            <label>Επόμενη επικοινωνία</label>
+          <label><?php echo t('next_contact'); ?></label>
 
             <input
                 type="date"
@@ -250,7 +306,7 @@ $selectedCategories = $member["interest_categories"] ?? [];
         </div>
 
         <div class="form-group">
-            <label>Επόμενη ενέργεια</label>
+            <label><?php echo t('next_action'); ?></label>
 
             <input
                 type="text"
@@ -272,7 +328,7 @@ $selectedCategories = $member["interest_categories"] ?? [];
                 <button type="submit">Αποθήκευση Αλλαγών</button>
 
                 <a class="button-link" href="profile.php?id=<?php echo urlencode($id); ?>">
-                    Άκυρο
+                   <?php echo t('cancel'); ?>
                 </a>
             </div>
 

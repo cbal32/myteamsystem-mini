@@ -245,7 +245,7 @@ Instagram Profile:
     <h2><?php echo t('followup_manager'); ?></h2>
 
     <p><strong><?php echo t('next_contact'); ?>:</strong>
-       <?php echo formatDate($member["next_follow_up_date"] ?? ""); ?>
+        <?php echo htmlspecialchars($member["next_follow_up_date"] ?? ""); ?>
     </p>
 
     <p><strong><?php echo t('next_action'); ?>:</strong>
@@ -281,7 +281,7 @@ Instagram Profile:
     <?php if (!empty($member["timeline"]) && is_array($member["timeline"])): ?>
         <?php foreach (array_reverse($member["timeline"]) as $entry): ?>
             <div class="timeline-entry">
-                <strong><?php echo htmlspecialchars($entry["date"] ?? ""); ?></strong>
+                <strong><?php echo formatDateTime($entry["date"] ?? ""); ?></strong>
                 -
                 <?php echo htmlspecialchars($entry["type"] ?? ""); ?>
 

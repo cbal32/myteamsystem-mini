@@ -98,4 +98,73 @@ return [
 'copy_ai_prompt' => 'Copy AI Prompt',
 'prompt_copied' => 'Prompt copied.',
 
+
+'new_prospect_title' => 'New Prospect',
+'new_prospect_desc' => 'Add a new prospect and prepare AI analysis.',
+'prospect_saved' => 'Prospect saved successfully.',
+
+'first_name' => 'First Name',
+'last_name' => 'Last Name',
+'basic_details' => 'Basic Details',
+'social_marketing' => 'Social & Marketing',
+
+'facebook_url' => 'Facebook Profile URL',
+'instagram_url' => 'Instagram Profile URL',
+'contact_source' => 'Contact Source',
+
+'new_status' => 'New',
+'contacted_status' => 'Contacted',
+'interested_status' => 'Interested',
+'registered_status' => 'Registered',
+'not_interested_status' => 'Not Interested',
+
+'low_priority' => 'Low Priority',
+'medium_priority' => 'Medium Priority',
+'high_priority_label' => 'High Priority',
+
+'comments_description' => 'Comments or short prospect bio',
+'economic_personal_goals' => 'Financial or personal goals',
+
+'perfume' => 'Perfume',
+'supplements' => 'Supplements',
+'cosmetics' => 'Cosmetics',
+'business' => 'Business',
+'work_from_home' => 'Work From Home',
+'extra_income' => 'Extra Income',
+
+'social_observations_placeholder' => 'What did you notice from the prospect’s social media?',
+'webinar_invitation_example' => 'e.g. Webinar invitation',
+
+'save_prospect' => 'Save Prospect',
+'save_changes' => 'Save Changes',
+'view_list' => 'View List',
+'cancel' => 'Cancel',
+
+'edit_prospect_title' => 'Edit Prospect',
+'edit_prospect_desc' => 'Editing details for',
+
+'friend' => 'Friend',
+'acquaintance' => 'Acquaintance',
+'seminar_source' => 'From Seminar',
+'referral_source' => 'From Referral',
+'delete' => 'Delete',
+'confirm_delete' => 'Are you sure you want to delete this prospect?',
+
+
+'delete_prospect' => 'Delete Prospect',
+'delete_prospect_desc' => 'Permanently remove a prospect from the CRM.',
+'delete_confirmation_text' => 'Are you sure you want to delete the following prospect?',
+'warning' => 'Warning',
+'delete_warning_text' => 'This action is permanent and cannot be undone.',
+'yes_delete' => 'Yes, Delete',
+'prospect_not_found' => 'Prospect not found',
+
+
+
+
+
+
+
+
+
 ];
