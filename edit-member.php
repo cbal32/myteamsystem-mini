@@ -1,7 +1,3 @@
-
-<link rel="stylesheet" href="assets/css/style.css">
-
-
 <?php
 $dataFile = __DIR__ . "/data/members.json";
 
@@ -75,104 +71,236 @@ function isSelected($current, $value) {
 function isChecked($array, $value) {
     return (is_array($array) && in_array($value, $array)) ? "checked" : "";
 }
+
+$fullName = trim(($member["first_name"] ?? "") . " " . ($member["last_name"] ?? ""));
+$selectedCategories = $member["interest_categories"] ?? [];
 ?>
 
-<h1>Edit Prospect</h1>
+<link rel="stylesheet" href="assets/css/style.css">
 
-<p><a href="profile.php?id=<?php echo urlencode($id); ?>">← Επιστροφή στο προφίλ</a></p>
+<div class="app-layout">
 
-<form method="post">
+    <aside class="sidebar">
 
-    <h2>Βασικά στοιχεία</h2>
+        <div class="profile-card">
+            <div class="profile-avatar">CV</div>
+            <div class="profile-name">Χρήστος Βαλσαμίδης</div>
+            <div class="profile-role">ESSENS Leader</div>
+        </div>
 
-    <input type="text" name="first_name" value="<?php echo htmlspecialchars($member["first_name"] ?? ""); ?>" placeholder="Όνομα"><br><br>
+        <h2>MTS CRM</h2>
 
-    <input type="text" name="last_name" value="<?php echo htmlspecialchars($member["last_name"] ?? ""); ?>" placeholder="Επώνυμο"><br><br>
+        <a href="members.php">📊 Dashboard</a>
+        <a href="members.php?filter=all">👥 Prospects</a>
+        <a href="add-member.php">➕ New Prospect</a>
+        <a href="members.php?filter=today">📅 Follow Ups</a>
+        <a href="members.php?filter=high">⭐ Priority</a>
+        <a href="members.php#ai-tools">🤖 AI Tools</a>
+        <a href="#settings">⚙ Settings</a>
 
-    <input type="text" name="phone" value="<?php echo htmlspecialchars($member["phone"] ?? ""); ?>" placeholder="Τηλέφωνο"><br><br>
+    </aside>
 
-    <input type="email" name="email" value="<?php echo htmlspecialchars($member["email"] ?? ""); ?>" placeholder="Email"><br><br>
+    <main class="main-content">
 
-    <input type="text" name="country" value="<?php echo htmlspecialchars($member["country"] ?? ""); ?>" placeholder="Χώρα"><br><br>
+        <div class="page-header">
+            <h1>Edit Prospect</h1>
+            <p>Επεξεργασία στοιχείων για: <?php echo htmlspecialchars($fullName); ?></p>
+        </div>
 
-    <h2>Social Media</h2>
+        <p>
+            <a class="button-link" href="profile.php?id=<?php echo urlencode($id); ?>">
+                ← Επιστροφή στο προφίλ
+            </a>
 
-    <input type="url" name="facebook_url" value="<?php echo htmlspecialchars($member["facebook_url"] ?? ""); ?>" placeholder="Facebook Profile URL"><br><br>
+            <a class="button-link" href="members.php">
+                Προβολή λίστας
+            </a>
+        </p>
 
-    <input type="url" name="instagram_url" value="<?php echo htmlspecialchars($member["instagram_url"] ?? ""); ?>" placeholder="Instagram Profile URL"><br><br>
+        <form method="post">
 
-    <h2>Marketing Info</h2>
+            <div class="profile-grid">
 
-    <label>Πηγή επαφής:</label><br>
-    <select name="source">
-        <?php
-        $sources = ["", "Facebook", "Instagram", "TikTok", "Website", "Seminar", "Referral"];
-        foreach ($sources as $source) {
-            $label = $source === "" ? "Πηγή επαφής" : $source;
-            echo "<option value=\"" . htmlspecialchars($source) . "\" " . isSelected($member["source"] ?? "", $source) . ">" . htmlspecialchars($label) . "</option>";
-        }
-        ?>
-    </select><br><br>
+                <div class="section-card">
+                    <h2>Βασικά στοιχεία</h2>
 
-    <label>Κατάσταση:</label><br>
-    <select name="status">
-        <?php
-        $statuses = ["Νέος", "Επικοινωνήθηκε", "Ενδιαφέρεται", "Εγγράφηκε", "Δεν ενδιαφέρεται"];
-        foreach ($statuses as $status) {
-            echo "<option value=\"" . htmlspecialchars($status) . "\" " . isSelected($member["status"] ?? "Νέος", $status) . ">" . htmlspecialchars($status) . "</option>";
-        }
-        ?>
-    </select><br><br>
+                   <div class="form-group">
+         <label>Όνομα</label>
+    <input type="text" name="first_name" value="<?php echo htmlspecialchars($member["first_name"] ?? ""); ?>">
+</div>
 
-    <label>Priority:</label><br>
-    <select name="priority">
-        <?php
-        $priorities = ["Low", "Medium", "High"];
-        foreach ($priorities as $priority) {
-            echo "<option value=\"" . htmlspecialchars($priority) . "\" " . isSelected($member["priority"] ?? "Medium", $priority) . ">" . htmlspecialchars($priority) . "</option>";
-        }
-        ?>
-    </select><br><br>
+      <div class="form-group">
+    <label>Επώνυμο</label>
+    <input type="text" name="last_name" value="<?php echo htmlspecialchars($member["last_name"] ?? ""); ?>">
+</div>
 
-    <h2>Prospect Intelligence Profile</h2>
+<div class="form-group">
+        <label>Τηλέφωνο</label>
+                    <input type="text" name="phone" value="<?php echo htmlspecialchars($member["phone"] ?? ""); ?>" placeholder="Τηλέφωνο"><br><br>
+</div>
+                    <div class="form-group">
+                            <label>Email</label>
+                    <input type="email" name="email" value="<?php echo htmlspecialchars($member["email"] ?? ""); ?>" placeholder="Email"><br><br>
+</div>
+                    <div class="form-group">
+                            <label>Χώρα</label>
+                    <input type="text" name="country" value="<?php echo htmlspecialchars($member["country"] ?? ""); ?>" placeholder="Χώρα">
+                    </div>
+                </div>
 
-    <input type="text" name="profession" value="<?php echo htmlspecialchars($member["profession"] ?? ""); ?>" placeholder="Επάγγελμα"><br><br>
+                <div class="section-card">
+                    <h2>Social & Marketing</h2>
 
-    <input type="text" name="family_status" value="<?php echo htmlspecialchars($member["family_status"] ?? ""); ?>" placeholder="Οικογενειακή κατάσταση"><br><br>
+                    <input type="url" name="facebook_url" value="<?php echo htmlspecialchars($member["facebook_url"] ?? ""); ?>" placeholder="Facebook Profile URL"><br><br>
 
-    <input type="number" name="age" value="<?php echo htmlspecialchars($member["age"] ?? ""); ?>" placeholder="Ηλικία"><br><br>
+                    <input type="url" name="instagram_url" value="<?php echo htmlspecialchars($member["instagram_url"] ?? ""); ?>" placeholder="Instagram Profile URL"><br><br>
 
-    <textarea name="interests" rows="3" cols="60" placeholder="Ενδιαφέροντα"><?php echo htmlspecialchars($member["interests"] ?? ""); ?></textarea><br><br>
+                    <label>Πηγή επαφής:</label><br>
+                    <select name="source">
+                        <?php
+                        $sources = ["", "Facebook", "Instagram", "TikTok", "Website", "Seminar", "Referral"];
 
-    <textarea name="goals" rows="3" cols="60" placeholder="Οικονομικοί ή προσωπικοί στόχοι"><?php echo htmlspecialchars($member["goals"] ?? ""); ?></textarea><br><br>
+                        foreach ($sources as $source) {
+                            $label = $source === "" ? "Πηγή επαφής" : $source;
+                            echo "<option value=\"" . htmlspecialchars($source) . "\" " . isSelected($member["source"] ?? "", $source) . ">" . htmlspecialchars($label) . "</option>";
+                        }
+                        ?>
+                    </select><br><br>
 
-    <input type="text" name="available_time" value="<?php echo htmlspecialchars($member["available_time"] ?? ""); ?>" placeholder="Διαθέσιμος χρόνος εβδομαδιαία"><br><br>
+                    <label>Κατάσταση:</label><br>
+                    <select name="status">
+                        <?php
+                        $statuses = ["Νέος", "Επικοινωνήθηκε", "Ενδιαφέρεται", "Εγγράφηκε", "Δεν ενδιαφέρεται"];
 
-    <?php $selectedCategories = $member["interest_categories"] ?? []; ?>
+                        foreach ($statuses as $status) {
+                            echo "<option value=\"" . htmlspecialchars($status) . "\" " . isSelected($member["status"] ?? "Νέος", $status) . ">" . htmlspecialchars($status) . "</option>";
+                        }
+                        ?>
+                    </select><br><br>
 
-    <p><strong>Κατηγορίες ενδιαφέροντος:</strong></p>
+                    <label>Priority:</label><br>
+                    <select name="priority">
+                        <?php
+                        $priorities = ["Low", "Medium", "High"];
 
-    <label><input type="checkbox" name="interest_categories[]" value="Άρωμα" <?php echo isChecked($selectedCategories, "Άρωμα"); ?>> Άρωμα</label><br>
-    <label><input type="checkbox" name="interest_categories[]" value="Συμπληρώματα" <?php echo isChecked($selectedCategories, "Συμπληρώματα"); ?>> Συμπληρώματα</label><br>
-    <label><input type="checkbox" name="interest_categories[]" value="Καλλυντικά" <?php echo isChecked($selectedCategories, "Καλλυντικά"); ?>> Καλλυντικά</label><br>
-    <label><input type="checkbox" name="interest_categories[]" value="Επιχείρηση" <?php echo isChecked($selectedCategories, "Επιχείρηση"); ?>> Επιχείρηση</label><br>
-    <label><input type="checkbox" name="interest_categories[]" value="Work From Home" <?php echo isChecked($selectedCategories, "Work From Home"); ?>> Work From Home</label><br>
-    <label><input type="checkbox" name="interest_categories[]" value="Extra Income" <?php echo isChecked($selectedCategories, "Extra Income"); ?>> Extra Income</label><br><br>
+                        foreach ($priorities as $priority) {
+                            echo "<option value=\"" . htmlspecialchars($priority) . "\" " . isSelected($member["priority"] ?? "Medium", $priority) . ">" . htmlspecialchars($priority) . "</option>";
+                        }
+                        ?>
+                    </select>
+                </div>
 
-    <textarea name="social_observations" rows="5" cols="60" placeholder="Τι παρατήρησες από τα social media του υποψηφίου;"><?php echo htmlspecialchars($member["social_observations"] ?? ""); ?></textarea><br><br>
+            </div>
 
+            <div class="section-card">
+                <h2>Περιγραφή</h2>
+
+                <label>Σχόλια / Περιγραφή</label>
+
+<textarea name="description" rows="6"><?php echo htmlspecialchars($member["description"] ?? ""); ?></textarea>
+            </div>
+
+            <div class="section-card">
+                <h2>Prospect Intelligence Profile</h2>
+
+                <div class="profile-grid">
+                    <div>
+                    <div class="form-group">
+    <label>Επάγγελμα</label>
+    <input type="text" name="profession"
+           value="<?php echo htmlspecialchars($member["profession"] ?? ""); ?>">
+</div>
+
+<div class="form-group">
+    <label>Οικογενειακή κατάσταση</label>
+    <input type="text" name="family_status"
+           value="<?php echo htmlspecialchars($member["family_status"] ?? ""); ?>">
+</div>
+
+<div class="form-group">
+    <label>Ηλικία</label>
+    <input type="number" name="age"
+           value="<?php echo htmlspecialchars($member["age"] ?? ""); ?>">
+</div>
+
+<div class="form-group">
+    <label>Διαθέσιμος χρόνος εβδομαδιαία</label>
+    <input type="text" name="available_time"
+           value="<?php echo htmlspecialchars($member["available_time"] ?? ""); ?>">
+</div>
+</div>
+
+                    <div>
+                        <label>Ενδιαφέροντα</label>
+
+<textarea name="interests" rows="4"><?php echo htmlspecialchars($member["interests"] ?? ""); ?></textarea><br><br>
+
+                        <label>Στόχοι</label>
+
+<textarea name="goals" rows="4"><?php echo htmlspecialchars($member["goals"] ?? ""); ?></textarea>
+                    </div>
+                </div>
+
+                <p><strong>Κατηγορίες ενδιαφέροντος:</strong></p>
+
+                <div class="checkbox-grid">
+                    <label><input type="checkbox" name="interest_categories[]" value="Άρωμα" <?php echo isChecked($selectedCategories, "Άρωμα"); ?>> Άρωμα</label>
+                    <label><input type="checkbox" name="interest_categories[]" value="Συμπληρώματα" <?php echo isChecked($selectedCategories, "Συμπληρώματα"); ?>> Συμπληρώματα</label>
+                    <label><input type="checkbox" name="interest_categories[]" value="Καλλυντικά" <?php echo isChecked($selectedCategories, "Καλλυντικά"); ?>> Καλλυντικά</label>
+                    <label><input type="checkbox" name="interest_categories[]" value="Επιχείρηση" <?php echo isChecked($selectedCategories, "Επιχείρηση"); ?>> Επιχείρηση</label>
+                    <label><input type="checkbox" name="interest_categories[]" value="Work From Home" <?php echo isChecked($selectedCategories, "Work From Home"); ?>> Work From Home</label>
+                    <label><input type="checkbox" name="interest_categories[]" value="Extra Income" <?php echo isChecked($selectedCategories, "Extra Income"); ?>> Extra Income</label>
+                </div>
+
+                <br>
+
+                <label>Παρατηρήσεις Social Media</label>
+
+<textarea name="social_observations" rows="5"><?php echo htmlspecialchars($member["social_observations"] ?? ""); ?></textarea>
+            </div>
+
+<div class="section-card">
     <h2>Follow-Up Manager</h2>
 
-    <label>Επόμενη επικοινωνία:</label><br>
-    <input type="date" name="next_follow_up_date" value="<?php echo htmlspecialchars($member["next_follow_up_date"] ?? ""); ?>"><br><br>
+    <div class="followup-grid">
 
-    <label>Επόμενη ενέργεια:</label><br>
-    <input type="text" name="next_action" value="<?php echo htmlspecialchars($member["next_action"] ?? ""); ?>" placeholder="π.χ. Πρόσκληση στο webinar"><br><br>
+        <div class="form-group">
+            <label>Επόμενη επικοινωνία</label>
 
-    <h2>Περιγραφή</h2>
+            <input
+                type="date"
+                name="next_follow_up_date"
+                value="<?php echo htmlspecialchars($member["next_follow_up_date"] ?? ""); ?>">
+        </div>
 
-    <textarea name="description" rows="6" cols="70" placeholder="Σχόλια ή περιγραφή υποψηφίου"><?php echo htmlspecialchars($member["description"] ?? ""); ?></textarea><br><br>
+        <div class="form-group">
+            <label>Επόμενη ενέργεια</label>
 
-    <button type="submit">Αποθήκευση Αλλαγών</button>
+            <input
+                type="text"
+                name="next_action"
+                value="<?php echo htmlspecialchars($member["next_action"] ?? ""); ?>">
+        </div>
 
-</form>
+    </div>
+
+</div>
+
+
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-card">
+                <button type="submit">Αποθήκευση Αλλαγών</button>
+
+                <a class="button-link" href="profile.php?id=<?php echo urlencode($id); ?>">
+                    Άκυρο
+                </a>
+            </div>
+
+        </form>
+
+    </main>
+</div>
