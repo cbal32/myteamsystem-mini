@@ -184,7 +184,6 @@ $members = $filteredMembers;
             <th><?php echo t('status'); ?></th>
             <th><?php echo t('priority_col'); ?></th>
             <th><?php echo t('follow_up'); ?></th>
-            <th><?php echo t('date'); ?></th>
             <th><?php echo t('actions'); ?></th>
         </tr>
 
@@ -254,23 +253,50 @@ default:
                     ?>
                 </td>
 
-                <td>
-                    <?php
-                    $followUpDate = $member["next_follow_up_date"] ?? "";
+<td>
+    <?php
+    $followUpDate = $member["next_follow_up_date"] ?? "";
+    $nextAction = $member["next_action"] ?? "";
 
-                    if ($followUpDate === "") {
-                        echo "<span style='color:#666;'>" . t('not_set') . "</span>";
-                    } elseif ($followUpDate < $today) {
-                        echo "<span style='color:red;font-weight:bold;'>🔴 " . t('overdue') . "</span><br>" . htmlspecialchars($followUpDate);
-                    } elseif ($followUpDate === $today) {
-                        echo "<span style='color:orange;font-weight:bold;'>🟠 " . t('today') . "</span><br>" . htmlspecialchars($followUpDate);
-                    } else {
-                        echo "<span style='color:green;font-weight:bold;'>🟢 " . t('scheduled') . "</span><br>" . htmlspecialchars($followUpDate);
-                    }
-                    ?>
-                </td>
+    if ($followUpDate === "") {
+        echo "<span style='color:#666;'>" . t('not_set') . "</span>";
+    } else {
+        if ($followUpDate < $today) {
+            $label = "🔴 " . t('overdue');
+            $color = "red";
+        } elseif ($followUpDate === $today) {
+            $label = "🟠 " . t('today');
+            $color = "orange";
+        } else {
+            $label = "🟢 " . t('scheduled');
+            $color = "green";
+        }
+        ?>
 
-                <td><?php echo htmlspecialchars($member["created_at"] ?? ""); ?></td>
+        <button
+            type="button"
+            class="followup-popup-btn"
+            onclick="openFollowupModal(
+                '<?php echo htmlspecialchars($fullName = (($member["first_name"] ?? "") . " " . ($member["last_name"] ?? "")), ENT_QUOTES); ?>',
+                '<?php echo htmlspecialchars(formatDate($followUpDate), ENT_QUOTES); ?>',
+                '<?php echo htmlspecialchars($nextAction ?: t('not_set'), ENT_QUOTES); ?>'
+            )"
+        >
+            <span style="color:<?php echo $color; ?>;font-weight:bold;">
+                <?php echo $label; ?>
+            </span>
+            <br>
+            <span class="followup-popup-date">
+    <?php echo formatDate($followUpDate); ?>
+</span>
+        </button>
+
+        <?php
+    }
+    ?>
+</td>
+
+
 
                 <td>
                     <a href="edit-member.php?id=<?php echo urlencode($member["id"] ?? ""); ?>">
@@ -287,5 +313,31 @@ default:
         <?php endforeach; ?>
     </table>
 <?php endif; ?>
+
+<div id="followupModal" class="modal-overlay" style="display:none;">
+    <div class="modal-box">
+        <button class="modal-close" onclick="closeFollowupModal()">×</button>
+
+        <h2>Follow-Up Details</h2>
+
+        <p><strong>Prospect:</strong> <span id="modalProspectName"></span></p>
+        <p><strong>Ημερομηνία:</strong> <span id="modalFollowupDate"></span></p>
+        <p><strong>Επόμενη ενέργεια:</strong> <span id="modalNextAction"></span></p>
+    </div>
+</div>
+
+<script>
+function openFollowupModal(name, date, action) {
+    document.getElementById('modalProspectName').innerText = name;
+    document.getElementById('modalFollowupDate').innerText = date;
+    document.getElementById('modalNextAction').innerText = action;
+    document.getElementById('followupModal').style.display = 'flex';
+}
+
+function closeFollowupModal() {
+    document.getElementById('followupModal').style.display = 'none';
+}
+</script>
+
 
 <?php require __DIR__ . "/includes/layout-end.php"; ?>

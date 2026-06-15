@@ -58,5 +58,58 @@ return [
 'priority_medium' => 'Средний',
 'priority_high' => 'Высокий',
 
+'profile_desc' => 'Профиль кандидата, история контактов и AI-коммуникация.',
+
+'back_to_list' => 'Назад к списку',
+'edit_prospect' => 'Редактировать кандидата',
+
+'basic_info' => 'Основная информация',
+'marketing_info' => 'Маркетинговая информация',
+
+'country' => 'Страна',
+'created_at' => 'Дата создания',
+
+'facebook_open' => 'Открыть Facebook',
+'instagram_open' => 'Открыть Instagram',
+'not_declared' => 'Не указано',
+
+'description' => 'Комментарии / Описание',
+
+'profession' => 'Профессия',
+'family_status' => 'Семейное положение',
+'age' => 'Возраст',
+'interests' => 'Интересы',
+'goals' => 'Цели',
+'available_time' => 'Доступное время в неделю',
+'interest_categories' => 'Категории интересов',
+'social_observations' => 'Наблюдения из социальных сетей',
+
+'followup_manager' => 'Менеджер контактов',
+'next_contact' => 'Следующий контакт',
+'next_action' => 'Следующее действие',
+
+'notes_timeline' => 'История контактов',
+'write_note' => 'Введите заметку о контакте...',
+'next_action_example' => 'Следующее действие, например приглашение на вебинар',
+
+'note' => 'Заметка',
+'phone_call' => 'Телефонный звонок',
+'fb_message' => 'Сообщение Facebook',
+'ig_message' => 'Сообщение Instagram',
+
+'add_timeline' => 'Добавить в историю',
+'no_history' => 'История контактов пока отсутствует.',
+
+'ai_contact_strategy' => 'AI Стратегия общения',
+'ai_contact_desc' => 'Здесь позже будут отображаться AI-сценарии общения.',
+'generate_ai_scenarios' => 'Создать AI сценарии общения',
+
+'ai_brief_generator' => 'AI Генератор Brief',
+'copy_ai_brief' => 'Копировать AI Brief',
+
+'ai_master_prompt' => 'AI Master Prompt',
+'copy_ai_prompt' => 'Копировать AI Prompt',
+
+'prompt_copied' => 'Промпт скопирован.',
 
 ];
